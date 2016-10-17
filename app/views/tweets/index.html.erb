@@ -1,0 +1,7 @@
+<h1>独り言の一覧</h1>
+
+<% @tweets.each do |tweet| %>
+  <p>曰く：<%= tweet.content %></p>
+<% end %>
+
+<%= link_to "独り言ちる", new_tweet_path %>
