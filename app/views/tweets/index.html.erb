@@ -1,7 +1,13 @@
+<p><%= notice %></p>
+
 <h1>独り言の一覧</h1>
 
 <% @tweets.each do |tweet| %>
   <p>曰く：<%= tweet.content %></p>
+  <%= link_to "言い直す", edit_tweet_path(tweet.id) %>
+  <%= link_to "もみ消す", tweet_path(tweet), method: :delete,
+    data: { confirm: '本当にもみ消しますか？' } %>
 <% end %>
-
-<%= link_to "独り言ちる", new_tweet_path %>
+<br>
+<br>
+<%= link_to "新たに独り言ちる", new_tweet_path %>

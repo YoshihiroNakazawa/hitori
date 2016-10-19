@@ -1,0 +1,15 @@
+<h3>以下の独り言を記憶します</h3>
+
+<%= form_for(@tweet) do |f| %>
+  
+  <%= f.hidden_field :content %>
+  
+  <p>内容<%= @tweet.content %></p>
+  <br>
+  <%= f.submit "記憶する" %>
+<% end %>
+
+<%= form_for(@tweet, url: new_tweet_path, method: 'get') do |f| %>
+  <%= f.hidden_field :content %>
+  <%= f.submit "戻る", name: 'back' %>
+<% end %>

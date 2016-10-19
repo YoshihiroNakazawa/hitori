@@ -1,8 +1,3 @@
-<%= form_for(@tweet) do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content %>
-  <br>
-  <%= f.submit %>
-<% end %>
+<h2>新たに独り  言ちる</h2>
 
-<%= link_to "一覧に戻る", tweets_path %>
+<%= render 'form' %>
