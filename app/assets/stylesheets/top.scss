@@ -1,0 +1,52 @@
+.main-header {
+  padding-bottom:  5%;
+  width: 100%;
+  background-size: cover;
+  background-image: url("KIMG0082.JPG");
+  background-attachment: fixed;
+}
+
+.main-header img {
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+  padding-top: 5%;
+}
+
+.firebird {
+  float: left;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.firebird img {
+  max-width: 50px;
+  height: auto;
+}
+
+.enter {
+  float: right;
+  margin-right:20px;
+  margin-top:20px;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: rgba(0,0,0,0.1);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.enter:hover{
+  color: #333;
+  background: #fff;
+  text-decoration: none;
+}
+
+.about {
+  background-color: white;
+  color: #333;
+  padding: 40px;
+  margin-bottom: 80px;
+}
+

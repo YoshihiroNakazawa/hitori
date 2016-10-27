@@ -1,20 +1,33 @@
-<%= form_for(@tweet, url: choose_new_or_edit) do |f| %>
+<div class="form-horizontal" role="form">
+  <%= form_for(@tweet, url: choose_new_or_edit) do |f| %>
   
-  <% if @tweet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @tweet.errors.count %>件のエラーがあります。</h2>
-      <ul>
-        <% @tweet.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+    <div class="form-group">
+      <% if @tweet.errors.any? %>
+      <div class="alert alert-warning alert-dismissable">
+        <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <!--<h2><%= @tweet.errors.count %>件のまちがいがあります。</h2>-->
+        <div style="text-align: left">
+          <ul>
+            <% @tweet.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  
+    <div class="form-group">
+      <!-- <%= f.label :content, :class => "control-label" %> -->
+      <%= f.text_area :content, :class => "form-control", :rows => 5, :placeholder => "ここに入力してください。", :id => "gochi" %>
+      <script>
+        document.getElementById('gochi').focus(); 
+      </script>
+      <p class="help-block" style="text-align:left">255文字までで。</p>
+    </div>
+    <div class="form-group">
+      <%= f.submit "この内容で記憶する", :class => "btn btn-primary" %>
+      <%= link_to "戻って一覧を眺める", tweets_path, :class => "btn btn-default" %>
     </div>
   <% end %>
-  
-  <%= f.label :content %>
-  <%= f.text_field :content %>
-  <br>
-  <%= f.submit %>
-<% end %>
-
-<%= link_to "一覧に戻る", tweets_path %>
+</div>

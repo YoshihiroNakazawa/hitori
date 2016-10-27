@@ -1,14 +1,14 @@
 ja:
   activerecord:
     models:
-      tweet: 独り言
+      tweet: ひとりごと
     attributes:
       tweet:
-        content: 内容
+        content: ひとりごと
     errors:
       models:
         tweet:
           attributes:
             content:
-              blank: が無いよう。何かひとことでも言ちてください。
-              too_long: が長いよう。255文字までで言ちてください。
+              blank: とはいえ、文字にしないと記憶にのこりませんよ。
+              too_long: が長すぎておぼえきれません。255文字まででごちてください。

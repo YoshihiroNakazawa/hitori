@@ -1,13 +1,60 @@
-<p><%= notice %></p>
-
-<h1>独り言の一覧</h1>
-
-<% @tweets.each do |tweet| %>
-  <p>曰く：<%= tweet.content %></p>
-  <%= link_to "言い直す", edit_tweet_path(tweet.id) %>
-  <%= link_to "もみ消す", tweet_path(tweet), method: :delete,
-    data: { confirm: '本当にもみ消しますか？' } %>
+<% if notice != nil %>
+<div class="alert alert-warning alert-dismissable">
+    <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p><%= notice %></p>
+  </div>
+</div>
 <% end %>
-<br>
-<br>
-<%= link_to "新たに独り言ちる", new_tweet_path %>
+<div class=container style="margin-bottom:80px">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+      <div class="left-col" >
+        <div class="left-col-b" ></div>
+        <div class="left-col-w1" ></div>
+        <div class="left-col-w2" ></div>
+        <div class="left-col-foot"><img src="<%= asset_path "foot.jpg" %>"></div>
+        <div class= "left-col-count">
+          <p>おぼえています<br><%= @count %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-9 col-xs-12">
+      <% @tweets.each_with_index do |tweet,idx| %>
+        <div class="row">
+          <div class="col">
+            <div class="tweets">
+              <% if tweet.created_at==tweet.updated_at %>
+                <p class="small"><%= (idx+1).to_s %>. <%= tweet.created_at.strftime("%Y/%-m/%-d %-H:%M頃") %>にひとりごちた...</p>
+              <% else %>
+                <p class="small"><%= (idx+1).to_s %>. <%= tweet.updated_at.strftime("%Y/%-m/%-d %-H:%M頃") %>になおした...</p>
+              <% end %>
+              <div style="word-wrap: break-word">
+                <p class="lead"><%= tweet.content %></p>
+              </div>
+              <div style="text-align:right">
+                <%= link_to "なおす", edit_tweet_path(tweet.id), class: 'btn btn-default btn-xs' %>
+                <%= link_to "わすれさる", tweet_path(tweet), class: 'btn btn-default btn-xs',
+                  method: :delete,
+                  data: { confirm: '本当にわすれて良いんですね？' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div id="page-top-btn" class="page-top-btn">
+        <p><a class="move-page-top" id="move-page-top">▲</a></p>
+      </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-3 hidden-sm hidden-xs" >
+      <section class="right-col">
+        <div class="right-col-bk"></div>
+        <div class="right-col-cnt" >
+          ©2016 Hitori
+          <%= link_to "ひとりごつについて", root_path %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

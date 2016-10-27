@@ -1,15 +1,21 @@
-<h3>以下の独り言を記憶します</h3>
+<div class="container" style="margin-bottom: 90px">
+  <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+    <h3>このひとりごとを記憶します</h3>
 
-<%= form_for(@tweet) do |f| %>
-  
-  <%= f.hidden_field :content %>
-  
-  <p>内容<%= @tweet.content %></p>
-  <br>
-  <%= f.submit "記憶する" %>
-<% end %>
+    <%= form_for(@tweet) do |f| %>
+      <%= f.hidden_field :content %>
+      <div class="panel" style="text-align:left;padding:10px;word-wrap:break-word">
+        <%= @tweet.content %>
+      </div>
+      <br>
+      <%= f.submit "いいよ", :class => "btn btn-default" %>
+      <%= f.submit "やめておく", name: 'back', :class => "btn btn-default" %>
+    <% end %>
 
-<%= form_for(@tweet, url: new_tweet_path, method: 'get') do |f| %>
-  <%= f.hidden_field :content %>
-  <%= f.submit "戻る", name: 'back' %>
-<% end %>
+    <!--<%= form_for(@tweet, url: new_tweet_path, method: 'get') do |f| %>
+      <%= f.hidden_field :content %>
+      <%= f.submit "やめておく", name: 'back', :class => "btn btn-default" %>
+    <% end %>-->
+    
+  </div>
+</div>

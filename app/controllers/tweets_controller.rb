@@ -2,7 +2,8 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:edit, :update, :destroy]
   
   def index
-    @tweets = Tweet.all.order("id")
+    @count = Tweet.count
+    @tweets = Tweet.all.order(id: :desc)
   end
   
   def new
@@ -15,8 +16,10 @@ class TweetsController < ApplicationController
   
   def create
     @tweet = Tweet.new(tweets_params)
-    if @tweet.save
-      redirect_to tweets_path, notice: "新たな独り言を記憶しました。"
+    if params[:back]
+      render action: 'new'
+    elsif @tweet.save
+      redirect_to tweets_path, notice: "あらたなひとりごとを記憶しました。"
     else
       render action: 'new'
     end
@@ -27,7 +30,7 @@ class TweetsController < ApplicationController
   
   def update
     if @tweet.update(tweets_params)
-      redirect_to tweets_path, notice: "言い直した独り言を記憶しました。"
+      redirect_to tweets_path, notice: "なおしたひとりごとを記憶しました。"
     else
       render action: 'edit'
     end
@@ -35,7 +38,7 @@ class TweetsController < ApplicationController
   
   def destroy
     @tweet.destroy
-    redirect_to tweets_path, notice: "独り言をもみ消しました。"
+    redirect_to tweets_path, notice: "ひとりごとを一つ、わすれさりました。"
   end
   
   def confirm
